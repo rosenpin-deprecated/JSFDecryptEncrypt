@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title>Decryption form</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		File path: <h:inputText value="#{decrypt.filePath}" />
+		<br></br>
+		Key path: <h:inputText value="#{decrypt.keyPath}" />
+		<br></br>
+		<h:commandButton value="Decrypt" action="decrypt_result">
+		</h:commandButton>
+	</h:form>
+</h:body>
+</html>
