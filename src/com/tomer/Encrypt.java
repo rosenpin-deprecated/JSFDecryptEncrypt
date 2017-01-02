@@ -10,13 +10,14 @@ import javax.faces.bean.SessionScoped;
 public class Encrypt extends Operation implements Serializable {
 
 	public Encrypt() {
-		this.tag = "encrypted";
+		
 	}
 
 	@Override
 	public void process() {
 		result = new ArrayList<>();
 		int rand = Utils.random(1, 100);
+		result = new ArrayList<>();
 		setTextFromFile(result, this.filePath, rand);
 		if (result.size() <= 0)
 			return;

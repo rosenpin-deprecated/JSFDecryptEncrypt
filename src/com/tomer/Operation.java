@@ -13,14 +13,18 @@ public abstract class Operation {
 	String keyPath;
 	String finalFileName = "Please make sure that your input was correctly entered";
 	ArrayList<String> result;
-	String tag;
+	String tag = "UNDEFINED";
 
 	abstract String handleLine(String text, int key);
 
 	void process() {
-		this.finalFileName = getFileNameWithExtension(filePath, tag);
-		System.out.println("file name " + this.finalFileName);
-		if (this.finalFileName.equals("Error, bad file name")) {
+		if (this instanceof Encrypt)
+			tag = "encrypted";
+		else if (this instanceof Decrypt)
+			tag = "decrypted";
+		finalFileName = getFileNameWithExtension(filePath, tag);
+		System.out.println("file name " + finalFileName);
+		if (finalFileName.equals("Error, bad file name")) {
 			Utils.toast(FacesContext.getCurrentInstance(), "Bad file name!");
 			return;
 		}

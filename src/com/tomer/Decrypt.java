@@ -11,7 +11,7 @@ import javax.faces.context.FacesContext;
 public class Decrypt extends Operation implements Serializable {
 
 	public Decrypt() {
-		this.tag = "decrypted";
+		
 	}
 
 	public void process() {
@@ -23,6 +23,7 @@ public class Decrypt extends Operation implements Serializable {
 			this.finalFileName = "Please make sure that your input was correctly entered";
 			return;
 		}
+		result = new ArrayList<>();
 		setTextFromFile(result, this.filePath, key);
 		if (result.size() <= 0)
 			return;
