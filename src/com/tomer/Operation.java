@@ -7,16 +7,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.faces.context.FacesContext;
-
+/**
+ * 
+ * @author tomer
+ * Operation is the parent class of Encrypt and Decrypt
+ * It includes the basic variables, getters, setters and other universal methods
+ */
 public abstract class Operation {
 	String filePath;
 	String keyPath;
 	String finalFileName = "Please make sure that your input was correctly entered";
 	ArrayList<String> result;
 	String tag = "UNDEFINED";
-
+	
+	//handleLine decrypts and encrypts one line at a time in the Decrypt object and Encrypt respectively
 	abstract String handleLine(String text, int key);
 
+	//Process() is being called after the required information is entered in the form
 	void process() {
 		if (this instanceof Encrypt)
 			tag = "encrypted";
@@ -37,6 +44,12 @@ public abstract class Operation {
 		docMaker.close();
 	}
 
+	/**
+	 * SetTextFromFile reads the text file (from path), handles it using the method specified in the child class and saves it line by line in the provided ArrayList
+	 * @param lines The ArrayList that is being passed by reference. The method saves the decrypted/encrypted lines in the lines param
+	 * @param path The path to the file that is being decrypted/encrypted
+	 * @param key The decryption/encryption key
+	 */
 	void setTextFromFile(ArrayList<String> lines, String path, int key) {
 		File file = new File(path);
 		BufferedReader reader = null;
@@ -57,7 +70,8 @@ public abstract class Operation {
 			}
 		}
 	}
-
+	
+	//This method returns the full path name of the provided fileName with the appropriate extension (_encrypted/_decrypted)
 	String getFileNameWithExtension(String fileName, String extension) {
 		if (fileName.contains(".")) {
 			String newFileName = fileName.substring(0, fileName.lastIndexOf('.'));
@@ -67,11 +81,8 @@ public abstract class Operation {
 		} else
 			return "Error, bad file name";
 	}
-
-	public String getFinalFileName() {
-		return finalFileName;
-	}
-
+	
+	//Returns the key value from the key file path
 	int getKey() {
 		File file = new File(keyPath);
 		BufferedReader reader = null;
@@ -94,10 +105,15 @@ public abstract class Operation {
 		}
 		return -1;
 	}
-
+	
+	//Returns the path to the directory containing the file to be encrypted/decrypted
 	String getDir() {
 		return this.filePath.substring(0,
 				this.filePath.lastIndexOf(Utils.CURRENT_OS == Utils.OS.UNIX ? '/' : '\\') + 1);
+	}
+	
+	public String getFinalFileName() {
+		return finalFileName;
 	}
 
 	public void setFilePath(String filePath) {

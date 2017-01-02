@@ -4,6 +4,12 @@ import java.io.PrintWriter;
 import javax.faces.context.FacesContext;
 import java.io.*;
 
+/**
+ * 
+ * @author tomer
+ * DocMaker is a document manager class
+ * It allows editing and creating new text files using a simple API
+ */
 public class DocMaker {
 	PrintWriter writer = null;
 	String text = "";

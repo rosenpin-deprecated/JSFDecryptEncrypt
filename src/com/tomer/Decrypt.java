@@ -10,10 +10,13 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class Decrypt extends Operation implements Serializable {
 
+	//Empty constructor for JSF
 	public Decrypt() {
 		
 	}
-
+	
+	//Process() is being called after the required information is entered in the form
+	@Override
 	public void process() {
 		result = new ArrayList<>();
 		int key = getKey();
@@ -31,6 +34,7 @@ public class Decrypt extends Operation implements Serializable {
 		super.process();
 	}
 
+	//In this instance, handleLine decrypts the line using the key
 	String handleLine(String line, int key) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < line.length(); i++) {

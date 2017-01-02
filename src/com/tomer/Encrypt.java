@@ -9,10 +9,12 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class Encrypt extends Operation implements Serializable {
 
+	//Empty constructor for JSF
 	public Encrypt() {
 		
 	}
-
+	
+	//Process() is being called after the required information is entered in the form
 	@Override
 	public void process() {
 		result = new ArrayList<>();
@@ -28,7 +30,8 @@ public class Encrypt extends Operation implements Serializable {
 		docMaker.create();
 		docMaker.close();
 	}
-
+	
+	//In this instance, handleLine encrypts the line using the key
 	String handleLine(String line, int key) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < line.length(); i++) {
